@@ -136,6 +136,7 @@ def part2(input):
 
 
 def search_strategies(track, target, loops):
+    # We need to figure out the unique set of operations
     availableActions = list("+++++---===")
     opList = []
     for op in availableActions:
@@ -149,6 +150,9 @@ def search_strategies(track, target, loops):
             raise ValueError(f"Invalid op: {op}")
         opList.append(delta)
     print("Generating all permutations")
+
+    # Wrap this in a set to remove duplicates
+    # Note: There should be a better way to do this.
     perms = set(it.permutations(opList))
     print(f"perms: {len(perms)}")
     total = 0
@@ -187,10 +191,10 @@ def part3(input):
     # Compute least common multiple
     # I was hoping this would be smaller than 2024.
     lcm = abs(track_len*max_ops) // math.gcd(track_len, max_ops)
-
     print(f"lcm: {lcm}")
-    print(idOpsDict)
     competitor = idOpsDict["A"]
+    # 2024/11 = 184 (it's divides evenly, so we can reduce the number of loops)
+    # This saves us quite bit of time.
     run = sim_run(track, competitor, 11)
     s = search_strategies(track, run, 11)
     return s
