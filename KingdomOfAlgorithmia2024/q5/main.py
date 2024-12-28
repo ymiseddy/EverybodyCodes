@@ -2,13 +2,6 @@ import shared as t
 import numpy as np
 
 
-def print_matrix(matrix):
-    for row in matrix:
-        for col in row:
-            print(col, end=" ")
-        print()
-
-
 def part1(input):
     lines = input.split("\n")
     nums = []
@@ -36,20 +29,20 @@ def part1(input):
     for i in range(10):
         column = i % columns
         next_column = (i + 1) % columns
-        c = nums[column][0]
+        clap = nums[column][0]
         nums[column] = nums[column][1:]
 
         length = len(nums[next_column])
-        pos = (c - 1) % length
-        if c > length:
-            if ((c - 1) // length) % 2 == 0:
-                pos = (c - 1) % length
+        pos = (clap - 1) % length
+        if clap > length:
+            if ((clap - 1) // length) % 2 == 0:
+                pos = (clap - 1) % length
             else:
-                pos = length - (((c % length) - 1) % length)
+                pos = length - (((clap % length) - 1) % length)
 
         # push c to next column at position pos
         nums[next_column] = nums[next_column][:pos] + \
-            [c] + nums[next_column][pos:]
+            [clap] + nums[next_column][pos:]
 
         # Get the frist column
         col = [nums[x][0] for x in range(len(nums))]
@@ -90,19 +83,19 @@ def part2(input):
         column = round % columns
         next_column = (round + 1) % columns
 
-        c = nums[column][0]
+        clap = nums[column][0]
         nums[column] = nums[column][1:]
 
         length = len(nums[next_column])
-        pos = (c - 1) % length
-        if c > length:
-            if ((c - 1) // length) % 2 == 0:
-                pos = (c - 1) % length
+        pos = (clap - 1) % length
+        if clap > length:
+            if ((clap - 1) // length) % 2 == 0:
+                pos = (clap - 1) % length
             else:
-                pos = length - (((c % length) - 1) % length)
+                pos = length - (((clap % length) - 1) % length)
 
         nums[next_column] = nums[next_column][:pos] + \
-            [c] + nums[next_column][pos:]
+            [clap] + nums[next_column][pos:]
 
         # Get the frist column
         col = [nums[x][0] for x in range(len(nums))]
@@ -149,19 +142,19 @@ def part3(input):
     while True:
         column = round % columns
         next_column = (round + 1) % columns
-        c = nums[column][0]
+        clap = nums[column][0]
         nums[column] = nums[column][1:]
 
         length = len(nums[next_column])
-        pos = (c - 1) % length
-        if c > length:
-            if ((c - 1) // length) % 2 == 0:
-                pos = (c - 1) % length
+        pos = (clap - 1) % length
+        if clap > length:
+            if ((clap - 1) // length) % 2 == 0:
+                pos = (clap - 1) % length
             else:
-                pos = length - (((c % length) - 1) % length)
+                pos = length - (((clap % length) - 1) % length)
 
         nums[next_column] = nums[next_column][:pos] + \
-            [c] + nums[next_column][pos:]
+            [clap] + nums[next_column][pos:]
 
         col = [nums[x][0] for x in range(len(nums))]
 

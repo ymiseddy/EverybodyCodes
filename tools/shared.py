@@ -35,6 +35,13 @@ class Grid:
         return grid
 
 
+def PrintMatrix(matrix):
+    for row in matrix:
+        for col in row:
+            print(col, end=" ")
+        print()
+
+
 def Read(filename: str) -> str:
     with open(filename, "r") as f:
         input = f.read()
